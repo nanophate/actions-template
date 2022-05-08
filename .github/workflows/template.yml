@@ -13,7 +13,7 @@ jobs:
     - run: echo "Hello World"
     - run: curl https://api.github.com/users/nanophate/repos | jq -r '.[] |  select(.full_name == "${{ secrets.APP_NAME }}")'
     - run: |
-        github_repo = $(curl https://api.github.com/users/nanophate/repos)
-        details = $(echo github_repo | jq -r '.[] |  select(.full_name == "${{ secrets.APP_NAME }}")')
+        github_repo=$(curl https://api.github.com/users/nanophate/repos)
+        details=$(echo github_repo | jq -r '.[] |  select(.full_name == "${{ secrets.APP_NAME }}")')
         echo $details
     
