@@ -11,5 +11,5 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - run: echo "Hello World"
-    - run: curl https://api.github.com/users/nanophate/repos | jq -r '.[] |  select(.full_name == "${{ APP_NAME }}")'
+    - run: curl https://api.github.com/users/nanophate/repos | jq -r '.[] |  select(.full_name == "${{ secrets.APP_NAME }}")'
     
