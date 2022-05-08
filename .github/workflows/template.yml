@@ -1,0 +1,15 @@
+name: "template"
+
+on:
+  push
+  
+jobs:
+  template:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - run: echo "Hello World"
+    - run: echo "${{ secrets.APP_NAME }}"
+    
