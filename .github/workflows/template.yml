@@ -4,11 +4,14 @@ on:
   push
   
 jobs:
-  template:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - run: curl -S ${{ secrets.url }}
-    
+      - run: sleep 10 && exit 0
+  deploy_test:
+    needs: test
+    if: ${{ !(contains(needs.test.result, 'failure')) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: output some info
+        run: echo "okay"
