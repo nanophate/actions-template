@@ -11,7 +11,9 @@ jobs:
       - run: sleep 10 && exit 0
   deploy_test:
     needs: test
-    if: always() && ${{ !(contains(needs.test.result, 'failure')) }}
+    if: |
+      always() &&
+      ${{ !(contains(needs.test.result, 'failure')) }}
     runs-on: ubuntu-latest
     steps:
       - name: output some info
