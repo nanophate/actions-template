@@ -13,7 +13,7 @@ jobs:
     needs: test
     if: |
       always() &&
-      github.ref == 'refs/heads/master' &&
+      github.ref == 'refs/heads/main' &&
       (needs.test.result == 'success' || needs.test.result == 'skipped')
     runs-on: ubuntu-latest
     steps:
