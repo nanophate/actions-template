@@ -18,12 +18,13 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: changes
         with:
+          base: ${{ github.event.pull_request.base.ref }}
           filters: |
             src:
               - 'src/**'
       - if: steps.changes.outputs.src == 'true'
         run: echo "aaaaaa"
-      - run: sleep 10 && exit 0
+      - run: echo ${{ github.event.pull_request.base.ref }}
   deploy_test:
     needs: test
     if: |
