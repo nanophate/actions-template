@@ -3,9 +3,6 @@ name: "template"
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
       - "*"
   
 jobs:
@@ -18,12 +15,13 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: changes
         with:
+          base: ${{ github.event.before }}
           filters: |
             src:
               - 'src/**'
       - if: steps.changes.outputs.src == 'true'
         run: echo "aaaaaa"
-      - run: sleep 10 && exit 0
+      - run: echo "weeee"
   deploy_test:
     needs: test
     if: |
