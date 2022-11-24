@@ -15,13 +15,13 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: changes
         with:
+          base: ${{ github.event.before }}
           filters: |
             src:
               - 'src/**'
       - if: steps.changes.outputs.src == 'true'
         run: echo "aaaaaa"
-      - run: echo ${{ github.event.base_ref }}
-      - run: echo ${{ github.event.before }}
+      - run: echo "weeee"
   deploy_test:
     needs: test
     if: |
