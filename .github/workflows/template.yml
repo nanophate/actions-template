@@ -1,13 +1,28 @@
 name: "template"
 
 on:
-  push
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "*"
   
 jobs:
   test:
-    if: false
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'src/**'
+      - if: steps.changes.outputs.src == 'true'
+        run: echo "aaaaaa"
       - run: sleep 10 && exit 0
   deploy_test:
     needs: test
