@@ -25,6 +25,7 @@ jobs:
       - if: steps.changes.outputs.src == 'true'
         run: echo "aaaaaa"
       - run: echo ${{ github.event.pull_request.base.ref }}
+      - run: echo ${{ github.event.pull_request.base.sha }}
   deploy_test:
     needs: test
     if: |
