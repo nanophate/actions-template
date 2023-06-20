@@ -29,7 +29,6 @@ jobs:
         run: |
            EVENT_MESSAGE="$TITLE $(git log) $MESSAGE"
            echo $EVENT_MESSAGE
-           echo "message=$EVENT_MESSAGE" >> $GITHUB_OUTPUT
   deploy_test:
     needs: test
     if: |
