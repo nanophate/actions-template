@@ -22,6 +22,14 @@ jobs:
       - if: steps.changes.outputs.src == 'true'
         run: echo "aaaaaa"
       - run: echo "weeee"
+      - id: nano
+        env:
+           TITLE: ${{ github.event.pull_request.title }}
+           MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+           EVENT_MESSAGE="$TITLE $(git log) $MESSAGE"
+           echo $EVENT_MESSAGE
+           echo "status=true" >> $GITHUB_OUTPUT
   deploy_test:
     needs: test
     if: |
