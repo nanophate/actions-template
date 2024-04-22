@@ -11,18 +11,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: circleci/ruby:2.6.3-stretch-node-browsers-legacy
+      options: --user 1001
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            src:
-              - 'src/**'
-      - if: steps.changes.outputs.src == 'true'
-        run: echo "aaaaaa"
+      - uses: actions/checkout@v4
+      - run: echo "aaaaaa"
       - run: sleep 10 && exit 0
   deploy_test:
     needs: test
