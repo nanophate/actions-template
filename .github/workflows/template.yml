@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: circleci/ruby:2.6.3-stretch-node-browsers-legacy
+      options: --user 1001
     steps:
       - uses: actions/checkout@v2
       - run: echo "aaaaaa"
